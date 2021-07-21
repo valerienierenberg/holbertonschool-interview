@@ -4,7 +4,7 @@ Each box is numbered sequentially from 0 to n - 1 and each box
 may contain keys to the other boxes. """
 
 
-def join(T , R):
+def join(T, R):
     res = []
     for e in R:
         res += T[e]
@@ -18,9 +18,9 @@ def canUnlockAll(boxes):
     added = True
     while added:
         added = False
-        for j in join(boxes, total[index : ]):
+        for j in join(boxes, total[index:]):
             if j not in total:
                 total.append(j)
-                index +=1
+                index += 1
                 added = True
     return len(total) == len(boxes)
