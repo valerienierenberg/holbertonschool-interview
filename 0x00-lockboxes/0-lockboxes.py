@@ -18,12 +18,15 @@ def canUnlockAll(boxes):
         keysDict[i] = False
 
     # loop through all keys
-    while False in keysDict.values() and loopIterations < len(boxes):
-        for i in list(keysDict):
-            if keysDict[i] is True:
-                for k in boxes[i]:
-                    keysDict[k] = True
-                loopIterations += 1
+    try:
+        while False in keysDict.values() and loopIterations < len(boxes):
+            for i in list(keysDict):
+                if keysDict[i] is True:
+                    for k in boxes[i]:
+                        keysDict[k] = True
+                    loopIterations += 1
+    except IndexError:
+        return False
 
     # if there is still a False value anywhere in dict, method returns false
     if False in keysDict.values():
