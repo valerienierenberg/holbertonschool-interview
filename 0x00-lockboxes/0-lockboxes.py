@@ -21,7 +21,7 @@ def canUnlockAll(boxes):
     while False in keysDict.values() and loopIterations < len(boxes):
         for i in list(keysDict):
             if keysDict[i] is True:
-                for k in boxes[i - 1]:
+                for k in boxes[i = 1]:
                     keysDict[k] = True
                 loopIterations += 1
 
