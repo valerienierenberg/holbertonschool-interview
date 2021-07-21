@@ -20,7 +20,7 @@ def canUnlockAll(boxes):
         keysDict[i] = False
 
     # loop through all keys
-    while False in keysDict.values() and trips < len(boxes):
+    while False in keysDict.values() and loopIterations < len(boxes):
         for i in keysDict:
             if keysDict[i] == True:
                 for k in boxes[i]:
