@@ -19,7 +19,7 @@ def canUnlockAll(boxes):
 
     # loop through all keys
     while False in keysDict.values() and loopIterations < len(boxes):
-        for i in keysDict:
+        for i in list(keysDict):
             if keysDict[i] is True:
                 for k in boxes[i]:
                     keysDict[k] = True
