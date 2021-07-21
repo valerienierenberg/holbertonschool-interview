@@ -7,7 +7,7 @@ may contain keys to the other boxes. """
 def join(T, R):
     res = []
     for e in R:
-        res += T[e]
+        res.append(T[e])
     return res
 
 
