@@ -3,11 +3,9 @@
 Each box is numbered sequentially from 0 to n - 1 and each box
 may contain keys to the other boxes. """
 
-#!/usr/bin/python3
-"""Determines if all boxes can be opened, beginning with 0"""
-
 
 def canUnlockAll(boxes):
+    """Determines if all boxes can be opened, beginning with 0"""
     keysDict = {
         0: True
     }
@@ -22,12 +20,12 @@ def canUnlockAll(boxes):
     # loop through all keys
     while False in keysDict.values() and loopIterations < len(boxes):
         for i in keysDict:
-            if keysDict[i] == True:
+            if keysDict[i] is True:
                 for k in boxes[i]:
                     keysDict[k] = True
                 loopIterations += 1
 
-    # if there is still a False value anywhere in the dict, method returns false
+    # if there is still a False value anywhere in dict, method returns false
     if False in keysDict.values():
         return False
     return True
