@@ -10,7 +10,7 @@ def canUnlockAll(boxes):
         0: True
     }
     # number of times going through the loop
-    # need to keep track of this for while loop condition (to prevent infinite loop)
+    # need to keep track of this for while loop (to prevent infinite loop)
     loopIterations = 0
 
     # populate the rest of the dict to False values to start
