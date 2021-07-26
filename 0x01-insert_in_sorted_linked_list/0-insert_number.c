@@ -4,65 +4,34 @@
 #include "lists.h"
 
 /**
-* add_nodeint- adds a new node at the beginning of a listint_t list
-* @n: int
+* insert_node- adds a new node at the beginning of a listint_t list
+* @number: int to insert in sorted position
 * @head: first node
-* Return: the address of the new element, or NULL if it failed
-*/
-
-listint_t *add_nodeint(listint_t **head, const int n)
-{
-	listint_t *newnode;
-
-	newnode = malloc(sizeof(listint_t));
-
-	if (newnode == NULL)
-		return (NULL);
-
-	newnode->n = n;
-	newnode->next = *head;
-
-	*head = newnode;
-
-return (newnode);
-}
-
-/**
-* insert_nodeint_at_index - Function that inserts a
-* new node at a given position.
-* @head: double pointer
-* @idx: int index
-* @n: n value
 * Return: the address of the new node, or NULL if it failed
 */
 
-listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
+listint_t *insert_node(listint_t **head, int number)
 {
-	listint_t *cpy = *head;
-	listint_t *new;
-	unsigned int i = 0;
+	listint_t *p1, *p2, *p;
 
-	if (head == NULL)
-		return (NULL);
-
-	if (idx == 0)
-		return (add_nodeint(head, n));
-
-	new = malloc(sizeof(listint_t));
-		if (new == NULL)
-		return (NULL);
-
-	while (cpy != NULL)
+	p1 = NULL;
+	p2 = *head;  /* p2 points to first node */
+	for (; p2->n < number; p2 = p2->next)
 	{
-		if ((idx - 1) == i)
-	{
-		new->n = n;
-		new->next = cpy->next;
-		cpy->next = new;
-		return (new);
+		p1 = p2;
+		if (p2->next->next == NULL)
+		{
+			p2 = p2->next;   /* insertion at end */
+			break;
+		}
 	}
-	cpy = cpy->next;
-	i++;
-}
-return (NULL);
+	/*key node found and insert new node */
+	p = malloc(sizeof(listint_t));  /* space fornew node */
+	p->n = number; /* place value in the new node */
+	p->next = p2; /*link new node to key node */
+	if (p1 == NULL)
+		*head = p; /* new node becomes the first node */
+	else
+		p1->next = p; /* new node inserted in middle */
+	return (*head);
 }
