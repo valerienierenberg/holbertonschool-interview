@@ -26,7 +26,7 @@ listint_t *insert_node(listint_t **head, int number)
 		}
 	}
 	/*key node found and insert new node */
-	p = malloc(sizeof(listint_t));  /* space fornew node */
+	p = malloc(sizeof(listint_t));  /* space for new node */
 	p->n = number; /* place value in the new node */
 	p->next = p2; /*link new node to key node */
 	if (p1 == NULL)
