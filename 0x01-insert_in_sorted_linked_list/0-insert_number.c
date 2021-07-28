@@ -19,7 +19,7 @@ listint_t *insert_node(listint_t **head, int number)
 	for (; p2->n < number; p2 = p2->next)
 	{
 		p1 = p2;
-		if (p2->next->next == NULL)
+		if (p2->next == NULL)
 		{
 			p2 = p2->next;   /* insertion at end */
 			break;
