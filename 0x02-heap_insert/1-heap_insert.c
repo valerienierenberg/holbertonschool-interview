@@ -10,14 +10,13 @@
 
 heap_t *heap_insert(heap_t **root, int value)
 {
-	heap_t *new;
 	heap_t *current = *root;
+	heap_t *new = malloc(sizeof(heap_t));
+		if (new == NULL)
+			return (NULL);
 
 	if (*root == NULL)
 	{
-		new = malloc(sizeof(heap_t));
-		if (new == NULL)
-			return (NULL);
 		new->n = value;
 		new->parent = new->left = new->right = NULL;
 		*root = new;
@@ -28,12 +27,14 @@ heap_t *heap_insert(heap_t **root, int value)
 		if (value > (current->n))
 		{
 			current->right = heap_insert(&current->right, value);
-			return (current);
+			new = current;
+			return (new);
 		}
 		else
 		{
 			current->left = heap_insert(&current->left, value);
-			return (current);
+			new = current;
+			return (new);
 		}
 	}
 	return (NULL);
