@@ -10,14 +10,14 @@
 
 heap_t *heap_insert(heap_t **root, int value)
 {
-	heap_t **new = root;
+	heap_t **new;
 
 	if (*root == NULL)
 	{
 		new = root;
 	}
 
-	*root = *root;
+	/* *root = *root; */
 	value = value;
 
 	return (*new);
