@@ -10,49 +10,30 @@
 
 heap_t *heap_insert(heap_t **root, int value)
 {
-	heap_t *current, *parent;
-	heap_t *new = NULL;
-
-	new = malloc(sizeof(heap_t));
-	if (new == NULL)
-		return (NULL);
+	heap_t *new;
+	heap_t *current = *root;
 
 	if (*root == NULL)
 	{
+		new = malloc(sizeof(heap_t));
+		if (new == NULL)
+			return (NULL);
 		new->n = value;
-		new->parent = NULL;
-		new->left = NULL;
-		new->right = NULL;
+		new->parent = new->left = new->right = NULL;
 		*root = new;
 		return (new);
 	}
 	else
 	{
-		current = *root;
-		parent = NULL;
-		while (1)
+		if (value > (current->n))
 		{
-			parent = current;
-			if (value < parent->n)
-			{
-				current = current->left;
-
-				if (current == NULL)
-				{
-					parent->left = new;
-					return new;
-				}
-			}
-			else
-			{
-				current = current->right;
-
-				if (current == NULL)
-				{
-					parent->right = new;
-					return new;
-				}
-			}
+			current->right = heap_insert(&current->right, value);
+			return (current);
+		}
+		else
+		{
+			current->left = heap_insert(&current->left, value);
+			return (current);
 		}
 	}
 	return (NULL);
