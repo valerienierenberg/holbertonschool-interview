@@ -11,7 +11,7 @@
 heap_t *heap_insert(heap_t **root, int value)
 {
 	/* heap_t *cpy = *root; */
-	heap_t *new;
+	heap_t *new = NULL;
 
 	new = malloc(sizeof(heap_t));
 	if (new == NULL)
@@ -23,4 +23,5 @@ heap_t *heap_insert(heap_t **root, int value)
 		*root = new;
 	}
 	return (new);
+	free (new);
 }
