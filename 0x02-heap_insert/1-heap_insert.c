@@ -20,7 +20,6 @@ heap_t *heap_insert(heap_t **root, int value)
 	if (*root == NULL)
 	{
 		new->n = value;
-		new = *root;
 	}
 
 	return (new);
