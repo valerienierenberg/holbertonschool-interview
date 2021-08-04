@@ -10,16 +10,18 @@
 
 heap_t *heap_insert(heap_t **root, int value)
 {
-	heap_t *new = NULL;
+	/* heap_t *cpy = *root; */
+	heap_t *new;
+
+	new = malloc(sizeof(heap_t));
+	if (new == NULL)
+		return (NULL);
 
 	if (*root == NULL)
 	{
 		new->n = value;
 		new = *root;
 	}
-
-	/* *root = *root; */
-	value = value;
 
 	return (new);
 }
