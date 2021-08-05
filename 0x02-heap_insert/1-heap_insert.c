@@ -17,7 +17,6 @@ heap_t *heap_insert(heap_t **root, int value)
 
 	if (*root == NULL)
 	{
-		/* printf("first"); */
 		new->n = value;
 		new->parent = new->left = new->right = NULL;
 		*root = new;
@@ -27,7 +26,6 @@ heap_t *heap_insert(heap_t **root, int value)
 	{
 		if (current->left == NULL)
 		{
-			/* printf("got here\n"); */
 			current->left = new;
 			new->n = value;
 			new->parent = current;
@@ -35,7 +33,6 @@ heap_t *heap_insert(heap_t **root, int value)
 
 			if (value > current->n)
 			{
-				/* printf("value > current->n\n"); */
 				current = new;
 				return (new);
 			}
