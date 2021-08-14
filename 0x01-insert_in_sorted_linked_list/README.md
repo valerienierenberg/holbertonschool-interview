@@ -1,6 +1,6 @@
 # 0x01. Insert in sorted linked list
 This is the second weekly algorithm interview preparation project of specializations.
-- [Project Page](https://intranet.hbtn.io/projects/439)
+- [Project Page](https://intranet.hbtn.io/projects/439) 
 
 ## Requirements
 - Allowed editors: vi, vim, emacs
