@@ -1,4 +1,4 @@
-# 0x01. Insert in sorted linked list interview question
+# 0x01. Insert in sorted linked lists
 This is the second weekly algorithm interview preparation project of specializations.
 - [Project Page](https://intranet.hbtn.io/projects/439)
 
