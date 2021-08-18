@@ -2,16 +2,16 @@
 #include <stdbool.h>
 
 /**
-* sandpiles_sum- computes the sum of two sandpiles
+* add_sandies- add two sandpiles (no toppling yet)
 * @grid1: first sandpile, matrix of ints
 * @grid2: second sandpile, matrix of ints
-* Return: sum of two sandpiles
+* Return: sum of two sandpiles' values (no toppling yet)
 */
 
-void sandpiles_sum(int grid1[3][3], int grid2[3][3])
+void add_sandies(int grid1[3][3], int grid2[3][3])
 {
-	int i, j, num;
-	int newgrid[3][3];
+	int i, j;
+	/*int newgrid[3][3];*/
 
 	for (i = 0; i < 3; i++)
 	{
@@ -23,6 +23,21 @@ void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 		printf("=\n");
 		print_grid1(grid1);
 	}
+}
+
+/**
+* sandpiles_sum- computes the sum of two sandpiles
+* @grid1: first sandpile, matrix of ints
+* @grid2: second sandpile, matrix of ints
+* Return: sum of two sandpiles
+*/
+
+void sandpiles_sum(int grid1[3][3], int grid2[3][3])
+{
+	int i, j, num;
+	int newgrid[3][3];
+
+	add_sandies(grid1, grid2);
 	for (i = 0; i < 3; i++)
 	{
 		for (j = 0; j < 3; j++)
