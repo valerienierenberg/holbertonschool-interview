@@ -1,4 +1,5 @@
 #include "sandpiles.h"
+#include <stdbool.h>
 
 /**
 * sandpiles_sum- computes the sum of two sandpiles
@@ -19,9 +20,13 @@ void sandpiles_sum(int grid1[3][3], int grid2[3][3])
             grid1[i][j] = grid1[i][j] + grid2[i][j];
         }
     }
-    printf("=\n");
-    /*printf("thisss one");*/
-    print_grid1(grid1);
+
+    if (check_stable(grid1) == 0)
+    {
+        printf("=\n");
+        /*printf("thisss one");*/
+        print_grid1(grid1);
+    }
 
     for (i = 0; i < 3; i++)
     {
@@ -79,4 +84,30 @@ void print_grid1(int grid[3][3])
 		}
 		printf("\n");
 	}
+}
+
+
+/**
+* sandpiles_sum- computes the sum of two sandpiles
+* @grid1: first sandpile, matrix of ints
+* @grid2: second sandpile, matrix of ints
+* Return: sum of two sandpiles
+*/
+
+int check_stable(int grid1[3][3])
+{
+    int i, j, num;
+
+	for (i = 0; i < 3; i++)
+	{
+		for (j = 0; j < 3; j++)
+		{
+            num = grid1[i][j];
+            if (num >= 4)
+            {
+                return (0);
+            }
+        }
+    }
+    return (1);
 }
