@@ -30,7 +30,6 @@ void sandpiles_sum(int grid1[3][3], int grid2[3][3])
             if (num < 4)
             {
                 newgrid[i][j] = grid1[i][j];
-                return;
             }
         }
     }
