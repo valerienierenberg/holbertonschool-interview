@@ -18,11 +18,13 @@ void add_sandies(int grid1[3][3], int grid2[3][3])
 		for (j = 0; j < 3; j++)
 			grid1[i][j] = grid1[i][j] + grid2[i][j];
 	}
-	/*if (check_stable(grid1) == 0)
+	/**
+	if (check_stable(grid1) == 0)
 	{
 		printf("=\n");
 		print_grid1(grid1);
-	}*/
+	}
+	*/
 }
 
 /**
