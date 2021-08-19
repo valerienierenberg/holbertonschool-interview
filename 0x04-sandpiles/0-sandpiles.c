@@ -118,9 +118,9 @@ int check_stable(int grid1[3][3])
 			num = grid1[i][j];
 			if (num >= 4)
 			{
-				return (0);
+				return (1);
 			}
 		}
 	}
-	return (1);
+	return (0);
 }
