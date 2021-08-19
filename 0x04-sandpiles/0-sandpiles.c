@@ -65,7 +65,6 @@ void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 					newgrid[i][j + 1]++;
 				if (j - 1 >= 3)
 					newgrid[i][j - 1]++;
-				}
 			}
 		}
 		for (i = 0; i < 3; i++)
