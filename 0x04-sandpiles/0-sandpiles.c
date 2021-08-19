@@ -47,14 +47,14 @@ void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 	check = check_stable(grid1);
 	while (check == 1)
 	{
+		printf("=\n");
 		print_grid1(grid1);
 		for (i = 0; i < 3; i++)
 		{
 			for (j = 0; j < 3; j++)
 			{
-				num = grid1[i][j];
-				if (num >= 4)
-					newgrid[i][j] = grid1[i][j] - 4;
+				if (grid1[i][j] >= 4)
+					newgrid[i][j] -= 4;
 				if (i + 1 < 3)
 					newgrid[i + 1][j]++;
 				if (i - 1 >= 0)
