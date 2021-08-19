@@ -34,7 +34,7 @@ void add_sandies(int grid1[3][3], int grid2[3][3])
 
 void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 {
-	int i, j, num, check, newgrid[3][3];
+	int i, j, check, newgrid[3][3];
 
 	add_sandies(grid1, grid2);
 	for (i = 0; i < 3; i++)
