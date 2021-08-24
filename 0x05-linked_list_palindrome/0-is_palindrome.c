@@ -36,7 +36,7 @@ int pal_meat(listint_t **left, listint_t *right)
 	{
 		/* traverse through the list */
 		*left = (*left)->next;
-		/* base case if successfully passes checks all the way through */
+		/* is palindrome if successfully passes checks all the way through */
 		return (1);
 	}
 	/* not a palindrome */
