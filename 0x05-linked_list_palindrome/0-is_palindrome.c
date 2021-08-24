@@ -28,13 +28,18 @@ int is_palindrome(listint_t **head)
 
 int pal_meat(listint_t **left, listint_t *right)
 {
+	/* if the list is empty */
 	if (!right)
 		return (1);
+	/* recurse thru list checking if nodes are present and values are equal */
 	if (pal_meat(left, right->next) && (*left)->n == right->n)
 	{
+		/* traverse through the list */
 		*left = (*left)->next;
+		/* base case if successfully passes checks all the way through */
 		return (1);
 	}
+	/* not a palindrome */
 	else
 		return (0);
 }
