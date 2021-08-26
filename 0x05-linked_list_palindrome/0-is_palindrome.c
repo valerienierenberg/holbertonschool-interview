@@ -14,7 +14,7 @@ int is_palindrome(listint_t **head)
 {
 	if (!*head)
 		return (1);
-		return (pal_meat(head, *head));
+	return (pal_meat(head, *head));
 }
 
 
