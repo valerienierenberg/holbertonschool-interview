@@ -33,7 +33,7 @@ if __name__ == '__main__':
                 continue
             if "Holberton" in input_line:
                 count400 += 1
-                filesizecount += 304;
+                filesizecount += 304
                 continue
             if (statuscode == 200):
                 count200 += 1
