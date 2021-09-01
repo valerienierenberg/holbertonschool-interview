@@ -23,10 +23,9 @@ if __name__ == '__main__':
 
             if "Hello" in input_line:
                 continue
-            filesize = int(input_line.rsplit(' ', 1)[1])
             if "Holberton" in input_line:
-                filesize += 304
                 continue
+            filesize = int(input_line.rsplit(' ', 1)[1])
             statuscode = int(input_line.rsplit(' ', 2)[1])
             count += 1
 
@@ -35,6 +34,8 @@ if __name__ == '__main__':
             if (statuscode == 301):
                 count301 += 1
             if (statuscode == 400):
+                if "Holberton" in input_line:
+                    count400 += 1
                 count400 += 1
             if (statuscode == 401):
                 count401 += 1
@@ -47,6 +48,8 @@ if __name__ == '__main__':
             if (statuscode == 500):
                 count500 += 1
             filesizecount += int(filesize)
+            if "Holberton" in input_line:
+                filesizecount += 304;
             if (count % 10 == 0):
                 print("File size:", filesizecount)
                 if (count200 != 0):
