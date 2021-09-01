@@ -23,7 +23,10 @@ if __name__ == '__main__':
             filesize = int(input_line.rsplit(' ', 1)[1])
             statuscode = int(input_line.rsplit(' ', 2)[1])
             count += 1
-
+            if "Hello" in input_line:
+                continue
+            if "Holberton" in input_line:
+                continue
             if (statuscode == 200):
                 count200 += 1
             if (statuscode == 301):
@@ -81,23 +84,6 @@ if __name__ == '__main__':
             print("405:", count405)
         if (count500 != 0):
             print("500:", count500)
-    except IndexError:
-        print("File size:", filesizecount)
-        if (count200 != 0):
-            print("200:", count200)
-        if (count301 != 0):
-            print("301:", count301)
-        if (count400 != 0):
-            print("400:", count400)
-        if (count401 != 0):
-            print("401:", count401)
-        if (count403 != 0):
-            print("403:", count403)
-        if (count404 != 0):
-            print("404:", count404)
-        if (count405 != 0):
-            print("405:", count405)
-        if (count500 != 0):
-            print("500:", count500)
+
     except KeyboardInterrupt as err:
         pass
