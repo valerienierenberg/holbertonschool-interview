@@ -29,10 +29,10 @@ if __name__ == '__main__':
             except (ValueError, IndexError):
                 pass
             count += 1
-            if "Hello" in input_line:
-                continue
-            if "Holberton" in input_line:
-                continue
+            #if "Hello" in input_line:
+            #    continue
+            #if "Holberton" in input_line:
+            #    continue
             if (statuscode == 200):
                 count200 += 1
             if (statuscode == 301):
