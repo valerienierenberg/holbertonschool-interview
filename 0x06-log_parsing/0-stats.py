@@ -20,11 +20,6 @@ if __name__ == '__main__':
         count500 = 0
         for line in sys.stdin:
             input_line = line.rstrip()
-
-            #if "Hello" in input_line:
-            #    continue
-            #if "Holberton" in input_line:
-            #    continue
             filesize = int(input_line.rsplit(' ', 1)[1])
             statuscode = int(input_line.rsplit(' ', 2)[1])
             count += 1
