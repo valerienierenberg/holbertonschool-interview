@@ -21,13 +21,13 @@ if __name__ == '__main__':
         for line in sys.stdin:
             input_line = line.rstrip()
 
+            if "Hello" in input_line:
+                break
+            if "Holberton" in input_line:
+                break
             filesize = input_line.rsplit(' ', 1)[1]
             statuscode = int(input_line.rsplit(' ', 2)[1])
             count += 1
-            if "Hello" in input_line:
-                continue
-            if "Holberton" in input_line:
-                continue
 
             if (statuscode == 200):
                 count200 += 1
