@@ -20,7 +20,10 @@ if __name__ == '__main__':
         count500 = 0
         for line in sys.stdin:
             input_line = line.rstrip()
-            filesize = int(input_line.rsplit(' ', 1)[1])
+            try:
+                filesize = int(input_line.rsplit(' ', 1)[1])
+            except IndexError:
+                pass
             statuscode = int(input_line.rsplit(' ', 2)[1])
             count += 1
             if "Hello" in input_line:
