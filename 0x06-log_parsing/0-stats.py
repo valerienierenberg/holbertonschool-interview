@@ -63,7 +63,7 @@ if __name__ == '__main__':
         if (count200 != 0):
             print("200:", count200)
         if (count301 != 0):
-            print("300:", count301)
+            print("301:", count301)
         if (count400 != 0):
             print("400:", count400)
         if (count401 != 0):
