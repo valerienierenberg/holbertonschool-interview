@@ -52,6 +52,8 @@ if __name__ == '__main__':
                     print("401:", count401)
                 if (count403 != 0):
                     print("403:", count403)
+                if (count404 != 0):
+                    print("404:", count404)
                 if (count405 != 0):
                     print("405:", count405)
                 if (count500 != 0):
@@ -68,6 +70,8 @@ if __name__ == '__main__':
             print("401:", count401)
         if (count403 != 0):
             print("403:", count403)
+        if (count404 != 0):
+            print("404:", count404)
         if (count405 != 0):
             print("405:", count405)
         if (count500 != 0):
