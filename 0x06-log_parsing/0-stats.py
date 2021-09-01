@@ -16,7 +16,7 @@ if __name__ == '__main__':
         count403 = 0
         count404 = 0
         count405 = 0
-        count500  = 0
+        count500 = 0
         for line in sys.stdin:
             input_line = line.rstrip()
             filesize = input_line.rsplit(' ', 1)[1]
@@ -79,45 +79,3 @@ if __name__ == '__main__':
 
     except KeyboardInterrupt as err:
         pass
-
-#    except KeyboardInterrupt as err:
-#        input_line = line.rstrip()
-#        filesize = input_line.rsplit(' ', 1)[1]
-#        statuscode = int(input_line.rsplit(' ', 2)[1])
-#        count += 1
-#
-#        if (statuscode == 200):
-#            count200 += 1
-#        if (statuscode == 301):
-#            count301 += 1
-#        if (statuscode == 400):
-#            count400 += 1
-#        if (statuscode == 401):
-#            count401 += 1
-#        if (statuscode == 403):
-#            count403 += 1
-#        if (statuscode == 404):
-#            count404 += 1
-#        if (statuscode == 405):
-#            count405 += 1
-#        if (statuscode == 500):
-#            count500 += 1
-#
-#        filesizecount += int(filesize)
-#        if (count % 10 == 0):
-#            print("File size: ", filesizecount)
-#            if (count200 != 0):
-#                print("200: ", count200)
-#            if (count301 != 0):
-#                print("300: ", count301)
-#            if (count400 != 0):
-#                print("400: ", count400)
-#            if (count401 != 0):
-#                print("401: ", count401)
-#            if (count403 != 0):
-#                print("403: ", count403)
-#            if (count405 != 0):
-#                print("405: ", count405)
-#            if (count500 != 0):
-#                print("500: ", count500)
-#
