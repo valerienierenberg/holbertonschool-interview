@@ -82,6 +82,7 @@ if __name__ == '__main__':
             print("405:", count405)
         if (count500 != 0):
             print("500:", count500)
-
+    except IndexError:
+        pass
     except KeyboardInterrupt as err:
         pass
