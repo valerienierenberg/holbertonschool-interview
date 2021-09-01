@@ -73,6 +73,10 @@ if __name__ == '__main__':
                 if (count500 != 0):
                     print("500:", count500)
 
+        if "Holberton" in input_line:
+            count400 += 1
+        if "Holberton" in input_line:
+                filesizecount += 304;
         print("File size:", filesizecount)
         if (count200 != 0):
             print("200:", count200)
