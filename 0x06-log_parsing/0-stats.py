@@ -56,6 +56,23 @@ if __name__ == '__main__':
                     print("405: ", count405)
                 if (count500 != 0):
                     print("500: ", count500)
+
+            if (count < 10):
+                print("File size: ", filesizecount)
+                if (count200 != 0):
+                    print("200: ", count200)
+                if (count301 != 0):
+                    print("300: ", count301)
+                if (count400 != 0):
+                    print("400: ", count400)
+                if (count401 != 0):
+                    print("401: ", count401)
+                if (count403 != 0):
+                    print("403: ", count403)
+                if (count405 != 0):
+                    print("405: ", count405)
+                if (count500 != 0):
+                    print("500: ", count500)  
     except KeyboardInterrupt as err:
         pass
 
