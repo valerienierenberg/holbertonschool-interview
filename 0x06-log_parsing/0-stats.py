@@ -24,7 +24,10 @@ if __name__ == '__main__':
                 filesize = int(input_line.rsplit(' ', 1)[1])
             except IndexError:
                 pass
-            statuscode = int(input_line.rsplit(' ', 2)[1])
+            try:
+                statuscode = int(input_line.rsplit(' ', 2)[1])
+            except IndexError:
+                pass
             count += 1
             if "Hello" in input_line:
                 continue
