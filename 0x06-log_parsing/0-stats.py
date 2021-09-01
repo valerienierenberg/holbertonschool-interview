@@ -26,7 +26,7 @@ if __name__ == '__main__':
                 pass
             try:
                 statuscode = int(input_line.rsplit(' ', 2)[1])
-            except ValueError, IndexError:
+            except (ValueError, IndexError):
                 pass
             count += 1
             if "Hello" in input_line:
