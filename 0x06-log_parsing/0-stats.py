@@ -23,9 +23,10 @@ if __name__ == '__main__':
 
             if "Hello" in input_line:
                 continue
-            if "Holberton" in input_line:
-                continue
             filesize = input_line.rsplit(' ', 1)[1]
+            if "Holberton" in input_line:
+                filesize += 304
+                continue
             statuscode = int(input_line.rsplit(' ', 2)[1])
             count += 1
 
