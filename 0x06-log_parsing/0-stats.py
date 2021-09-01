@@ -29,10 +29,10 @@ if __name__ == '__main__':
             except (ValueError, IndexError):
                 pass
             count += 1
-            #if "Hello" in input_line:
-            #    continue
-            #if "Holberton" in input_line:
-            #    continue
+            if "Hello" in input_line:
+                continue
+            if "Holberton" in input_line:
+                continue
             if (statuscode == 200):
                 count200 += 1
             if (statuscode == 301):
@@ -50,11 +50,11 @@ if __name__ == '__main__':
             if (statuscode == 500):
                 count500 += 1
             filesizecount += int(filesize)
+            if "Holberton" in input_line:
+                count400 += 1
+            if "Holberton" in input_line:
+                filesizecount += 304;
             if (count % 10 == 0):
-                if "Holberton" in input_line:
-                    count400 += 1
-                if "Holberton" in input_line:
-                    filesizecount += 304;
                 print("File size:", filesizecount)
                 if (count200 != 0):
                     print("200:", count200)
