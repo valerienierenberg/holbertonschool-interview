@@ -4,6 +4,12 @@ import fileinput
 import sys
 from sys import argv
 import signal
+import re
+
+import re
+r = re.compile('.*/.*/.*:.*')
+if r.match('x/x/xxxx xx:xx') is not None:
+   print 'matches'
 
 if __name__ == '__main__':
     try:
@@ -19,6 +25,11 @@ if __name__ == '__main__':
         count500 = 0
         for line in sys.stdin:
             input_line = line.rstrip()
+
+            if "Hello" in input_line
+                pass
+            if "Holberton" in input_line
+                pass
             filesize = input_line.rsplit(' ', 1)[1]
             statuscode = int(input_line.rsplit(' ', 2)[1])
             count += 1
