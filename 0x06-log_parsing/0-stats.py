@@ -32,6 +32,8 @@ if __name__ == '__main__':
             if "Hello" in input_line:
                 continue
             if "Holberton" in input_line:
+                count400 += 1
+                filesizecount += 304;
                 continue
             if (statuscode == 200):
                 count200 += 1
@@ -50,10 +52,6 @@ if __name__ == '__main__':
             if (statuscode == 500):
                 count500 += 1
             filesizecount += int(filesize)
-            if "Holberton" in input_line:
-                print(something)
-                count400 += 1
-                filesizecount += 304;
             if (count % 10 == 0):
                 print("File size:", filesizecount)
                 if (count200 != 0):
