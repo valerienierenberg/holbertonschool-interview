@@ -22,9 +22,9 @@ if __name__ == '__main__':
             input_line = line.rstrip()
 
             if "Hello" in input_line:
-                pass
+                continue
             if "Holberton" in input_line:
-                pass
+                continue
             filesize = input_line.rsplit(' ', 1)[1]
             statuscode = int(input_line.rsplit(' ', 2)[1])
             count += 1
