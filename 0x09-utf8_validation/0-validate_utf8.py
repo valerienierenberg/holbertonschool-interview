@@ -2,6 +2,8 @@
 """ method that determines if a given data set represents a valid
 UTF-8 encoding. """
 
+NUMBER_OF_BITS_PER_BLOCK = 8
+MAX_NUMBER_OF_ONES = 4
 
 def validUTF8(data):
     """ validUTF8 method """
