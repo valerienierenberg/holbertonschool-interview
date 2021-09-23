@@ -5,24 +5,51 @@ UTF-8 encoding. """
 
 def validUTF8(data):
     """ validUTF8 method """
-    data = iter(data)
-    for leadingByte in data:
-        leadingOnes = countLeadingOnes(leadingByte)
-        if leadingOnes in [1, 7, 8]:
-            return False
-        for _ in range(leadingOnes - 1):
-            trailingByte = next(data, None)
-            if trailingByte is None or trailingByte >> 6 != 0b10:
-                return False
-    return True
+        index = 0
+        while index < len(data):
+            number = data[index] & (2 ** 7)
+            number >>= (NUMBER_OF_BITS_PER_BLOCK - 1)
+            if number == 0:  # single byte char
+                index += 1
+                continue
 
+            # validate multi-byte char
+            number_of_ones = 0
+            while True:  # get the number of significant ones
+                number = data[index] & (2 ** (7 - number_of_ones))
+                number >>= (NUMBER_OF_BITS_PER_BLOCK - number_of_ones - 1)
+                if number == 1:
+                    number_of_ones += 1
+                else:
+                    break
 
-def countLeadingOnes(byte):
-    """ countLeadingOnes method """
-    for i in range(8):
-        if byte >> (7 - i) == 0b11111111 >> (7 - i) & ~1:
-            return i
-    return 8
+                if number_of_ones > MAX_NUMBER_OF_ONES:
+                    return False  # too much ones per char sequence
+
+            if number_of_ones == 1:
+                return False  # there has to be at least 2 ones
+
+            index += 1  # move on to check the next byte in a multi-byte char sequence
+
+            # check for out of bounds and exit early
+            if index >= len(data) or index >= (index + number_of_ones - 1):
+                return False  
+
+            # every next byte has to start with "10"
+            for i in range(index, index + number_of_ones - 1):
+                number = data[i]
+
+                number >>= (NUMBER_OF_BITS_PER_BLOCK - 1)
+                if number != 1:
+                    return False
+                number >>= (NUMBER_OF_BITS_PER_BLOCK - 1)
+                if number != 0:
+                    return False
+
+                index += 1
+
+        return True
+
 
 
 """
@@ -33,3 +60,55 @@ The data will be represented by a list of integers
 Each integer represents 1 byte of data, therefore you only
 need to handle the 8 least significant bits of each integer
 """
+
+
+class Solution(object):
+    def validUtf8(self, data):
+        """
+        :type data: List[int]
+        :rtype: bool
+        """
+        index = 0
+        while index < len(data):
+            number = data[index] & (2 ** 7)
+            number >>= (NUMBER_OF_BITS_PER_BLOCK - 1)
+            if number == 0:  # single byte char
+                index += 1
+                continue
+
+            # validate multi-byte char
+            number_of_ones = 0
+            while True:  # get the number of significant ones
+                number = data[index] & (2 ** (7 - number_of_ones))
+                number >>= (NUMBER_OF_BITS_PER_BLOCK - number_of_ones - 1)
+                if number == 1:
+                    number_of_ones += 1
+                else:
+                    break
+
+                if number_of_ones > MAX_NUMBER_OF_ONES:
+                    return False  # too much ones per char sequence
+
+            if number_of_ones == 1:
+                return False  # there has to be at least 2 ones
+
+            index += 1  # move on to check the next byte in a multi-byte char sequence
+
+            # check for out of bounds and exit early
+            if index >= len(data) or index >= (index + number_of_ones - 1):
+                return False  
+
+            # every next byte has to start with "10"
+            for i in range(index, index + number_of_ones - 1):
+                number = data[i]
+
+                number >>= (NUMBER_OF_BITS_PER_BLOCK - 1)
+                if number != 1:
+                    return False
+                number >>= (NUMBER_OF_BITS_PER_BLOCK - 1)
+                if number != 0:
+                    return False
+
+                index += 1
+
+        return True
