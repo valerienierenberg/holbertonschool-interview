@@ -32,7 +32,7 @@ def validUTF8(data):
             index += 1
 
             if index >= len(data) or index >= (index + number_of_ones - 1):
-                return False  
+                return False
 
             for i in range(index, index + number_of_ones - 1):
                 number = data[i]
@@ -48,4 +48,3 @@ def validUTF8(data):
     except (IndexError):
         return False
     return True
-
