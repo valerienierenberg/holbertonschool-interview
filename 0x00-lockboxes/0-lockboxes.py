@@ -13,8 +13,6 @@ def canUnlockAll(boxes):
         for i in boxes:
             if len(i) == 0:
                 return True
-            else:
-                return False
     for i in boxes:
         if len(i) == 0 and i is not boxes[k-1]:
             return False
