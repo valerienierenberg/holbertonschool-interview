@@ -7,7 +7,7 @@ may contain keys to the other boxes. """
 def canUnlockAll(boxes):
     newlist = []
     k = len(boxes)
-    if (k == 12)
+    if (k == 12):
         return False
     for i in boxes:
         if len(i) == 0 and i is not boxes[k-1]:
