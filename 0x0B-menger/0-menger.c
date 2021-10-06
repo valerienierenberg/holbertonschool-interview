@@ -102,21 +102,3 @@ void menger(int level)
 	carp = Sierpinski(level);
 	CarpetPrint(carp);
 }
-
-
-/**
- * CarpetPrint - function that prints a 2D Menger Sponge
- * @carp: Carpet to print
- * Return: void
- */
-void CarpetPrint(Carpet carp)
-{
-	char obuf[730];
-	int row;
-
-	for (row = 0; row < carp->dim; row++)
-	{
-		strncpy(obuf, carp->rows[row], carp->dim);
-		printf("%s\n", obuf);
-	}
-}
