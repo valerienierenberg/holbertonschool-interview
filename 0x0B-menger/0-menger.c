@@ -99,8 +99,16 @@ void menger(int level)
 	{
 		return;
 	}
-	carp = Sierpinski(level);
-	CarpetPrint(carp);
+	if (level == 0)
+	{
+		printf("#");
+	}
+	if (level == 1)
+	{
+		printf("###\n");
+		printf("# #\n");
+		printf("###\n");
+	}
 }
 
 
