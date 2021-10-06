@@ -93,8 +93,6 @@ Carpet Sierpinski(int level)
 
 void menger(int level)
 {
-	Carpet carp;
-
 	if (level < 0)
 	{
 		return;
