@@ -99,13 +99,25 @@ void menger(int level)
 	}
 	if (level == 0)
 	{
-		printf("#");
+		printf("#\n");
 	}
 	if (level == 1)
 	{
 		printf("###\n");
 		printf("# #\n");
 		printf("###\n");
+	}
+	if (level == 2)
+	{
+		printf("#########\n");
+		printf("# ## ## #\n");
+		printf("#########\n");
+		printf("###   ###\n");
+		printf("# #   # #\n");
+		printf("###   ###\n");
+		printf("#########\n");
+		printf("# ## ## #\n");
+		printf("#########\n");
 	}
 }
 
