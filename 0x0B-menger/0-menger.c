@@ -4,7 +4,7 @@
 /**
  * menger - a function that draws a 2D Menger Sponge
  * @level: the level of the Menger Sponge to draw
- * Return: 
+ * Return:
  */
 
 void menger(int level)
