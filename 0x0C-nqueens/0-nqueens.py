@@ -11,6 +11,7 @@ def p(s):
     """ print method """
     print(s)
 
+
 def nqueens(N):
     try:
         N = int(N)
