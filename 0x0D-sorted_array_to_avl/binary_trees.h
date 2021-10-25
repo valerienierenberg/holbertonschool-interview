@@ -26,5 +26,6 @@ typedef struct binary_tree_s avl_t;
 
 avl_t *sorted_array_to_avl(int *array, size_t size);
 void binary_tree_print(const binary_tree_t *tree);
+avl_t *avl_insert(avl_t *root, int value);
 
 #endif /* BINARY_TREES_H */
