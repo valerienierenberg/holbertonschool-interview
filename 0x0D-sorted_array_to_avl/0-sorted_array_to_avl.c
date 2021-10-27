@@ -21,7 +21,7 @@ avl_t *sorted_array_to_avl(int *array, size_t size)
     return (root);
 }
 
-avl_t avl_insert (avl_t *root, int value)
+avl_t *avl_insert (avl_t *root, int value)
 {
     avl_t *new_node, *parent, *current;
 
