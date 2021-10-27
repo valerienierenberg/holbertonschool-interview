@@ -10,33 +10,45 @@
 avl_t *sorted_array_to_avl(int *array, size_t size)
 {
     avl_t *root = NULL;
+    size_t i;
 
     if (array == NULL)
         return (NULL);
-    root = binary_tree_t(array[0]);
-    if (root == NULL)
-        return (NULL);
-    if (size > 1)
-        root = sorted_array_to_avl_rec(root, array + 1, size - 1);
+    for (i = 0; i < size; i++)
+    {
+        root = avl_insert(root, array[i]);
+    }
     return (root);
 }
 
-binary_tree_t *sorted_array_to_avl_rec(binary_tree_t *root,
-                        int *array, size_t size)
+avl_t avl_insert (avl_t *root, int value)
 {
-    binary_tree_t *left = NULL, *right = NULL;
-    size_t left_size = 0, right_size = 0;
+    avl_t *new_node, *parent, *current;
 
-    if (root == NULL || array == NULL)
+    new_node = malloc(sizeof(avl_t));
+    if (new_node == NULL)
         return (NULL);
-    if (size == 0)
-        return (root);
-    left_size = size / 2;
-    right_size = size - left_size - 1;
-    left = sorted_array_to_avl_rec(root->left, array, left_size);
-    right = sorted_array_to_avl_rec(root->right, array + left_size + 1,
-                    right_size);
-    root->left = left;
-    root->right = right;
-    return (root);
+    new_node->n = value;
+    new_node->left = NULL;
+    new_node->right = NULL;
+    new_node->parent = NULL;
+    new_node->height = 0;
+    if (root == NULL)
+        return (new_node);
+    parent = NULL;
+    current = root;
+    while (current != NULL)
+    {
+        parent = current;
+        if (value < current->n)
+            current = current->left;
+        else
+            current = current->right;
+    }
+    if (value < parent->n)
+        parent->left = new_node;
+    else
+        parent->right = new_node;
+    new_node->parent = parent;
+    return (new_node);
 }
