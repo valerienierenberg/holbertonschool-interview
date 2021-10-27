@@ -32,7 +32,7 @@ avl_t *avl_insert (avl_t *root, int value)
     new_node->left = NULL;
     new_node->right = NULL;
     new_node->parent = NULL;
-    new_node->height = 0;
+    /*new_node->height = 0;*/
     if (root == NULL)
         return (new_node);
     parent = NULL;
