@@ -21,7 +21,13 @@ avl_t *sorted_array_to_avl(int *array, size_t size)
 	return (root);
 }
 
-avl_t *avl_insert (avl_t *root, int value)
+/**
+ * avl_insert - function that builds an AVL tree from an array
+ * @root: root node
+ * @value: value of the node
+ * Return: AVL tree
+ */
+avl_t *avl_insert(avl_t *root, int value)
 {
 	avl_t *new_node, *temp;
 
