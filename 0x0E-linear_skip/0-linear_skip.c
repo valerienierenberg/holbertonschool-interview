@@ -22,12 +22,12 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
 		zero = list->index;
 		if (list->express)
 			list = list->express;
-	else
-    {
-        while (list->next)
-            list = list->next;
-        break;
-}
+		else
+		{
+			while (list->next)
+				list = list->next;
+    		break;
+		}
 		printf("Value checked at index [%d] = [%d]\n",
             (int)list->index, list->n);
 	}
