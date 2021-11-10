@@ -17,11 +17,10 @@ request(filmUrl, function (error, response, body) {
       }
       const characterName = JSON.parse(body).name;
       orderedCharacters[characterName] = character;
+
+      if (Object.keys(orderedCharacters).length === characters.length) {
+        console.log(orderedCharacters);
+      }
     });
   });
-  setTimeout(function () {
-    for (const character in orderedCharacters) {
-      console.log(character);
-    }
-  }, 1000);
 });
