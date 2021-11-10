@@ -8,6 +8,7 @@ request.get('https://swapi-api.hbtn.io/api/films/' + process.argv[2] + '/', func
     console.log(err);
   } else {
     const whole = JSON.parse(body);
+    const orderedChars = {};
     for (const char of whole.characters) {
       request.get(char, function (err, res, body) {
         if (err) {
