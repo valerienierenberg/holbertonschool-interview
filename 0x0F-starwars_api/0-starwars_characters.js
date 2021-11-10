@@ -10,17 +10,18 @@ request(filmUrl, function (error, response, body) {
   }
   const characters = JSON.parse(body).characters;
   const orderedCharacters = {};
+
   characters.forEach(function (character) {
     request(character, function (error, response, body) {
       if (error) {
         console.log(error);
       }
       const characterName = JSON.parse(body).name;
-      orderedCharacters[characterName] = character;
+      orderedCharacters[character] = characterName;
 
       if (Object.values(orderedCharacters).length === characters.length) {
         characters.forEach(character => {
-          //console.log(character);
+          // console.log(character);
           console.log(orderedCharacters[character]);
         });
       }
