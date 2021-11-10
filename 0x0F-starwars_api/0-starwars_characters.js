@@ -10,11 +10,15 @@ request.get('https://swapi-api.hbtn.io/api/films/' + process.argv[2] + '/', func
     const whole = JSON.parse(body);
     for (const char of whole.characters) {
       request.get(char, function (err, res, body) {
-        const wholeChars = JSON.parse(body);
         if (err) {
           console.log(err);
-        } else {
-          console.log(wholeChars.name);
+        }
+        const wholeChars = JSON.parse(body);
+        orderedChars[character] = wholeChars;
+        if (Object.values(orderedChars).length === characters.length) {
+          characters.forEach(character => {
+            console.log(orderedChars[character]);
+          });
         }
       });
     }
