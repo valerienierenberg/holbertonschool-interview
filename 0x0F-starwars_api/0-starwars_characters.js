@@ -20,8 +20,8 @@ request(filmUrl, function (error, response, body) {
 
       if (Object.values(orderedCharacters).length === characters.length) {
         characters.forEach(function (character) {
-          console.log(character);
-        //console.log(orderedCharacters[character]);
+          //console.log(character);
+          console.log(orderedCharacters[character]);
         });
       }
     });
