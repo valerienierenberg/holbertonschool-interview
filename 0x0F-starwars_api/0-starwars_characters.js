@@ -7,23 +7,21 @@ const filmUrl = `https://swapi-api.hbtn.io/api/films/${args[2]}`;
 request(filmUrl, function (error, response, body) {
   if (error) {
     console.log(error);
-  } else {
-    let json = JSON.parse(body);
-    let characters = json.characters;
-    let count = 0;
-    for (let i = 0; i < characters.length; i++) {
-      request(characters[i], function (error, response, body) {
-        if (error) {
-          console.log(error);
-        } else {
-          let json = JSON.parse(body);
-          console.log(json.name);
-          count++;
-          if (count === characters.length) {
-            process.exit(0);
-          }
-        }
-      });
-    }
   }
+  const characters = JSON.parse(body).characters;
+  const orderedCharacters = {};
+  characters.forEach(function (character) {
+    request(character, function (error, response, body) {
+      if (error) {
+        console.log(error);
+      }
+      const characterName = JSON.parse(body).name;
+      orderedCharacters[characterName] = character;
+    });
+  });
+  setTimeout(function () {
+    for (const character in orderedCharacters) {
+      console.log(character);
+    }
+  }, 1000);
 });
