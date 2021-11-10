@@ -19,7 +19,7 @@ request(filmUrl, function (error, response, body) {
       orderedCharacters[characterName] = character;
 
       if (Object.keys(orderedCharacters).length === characters.length) {
-        console.log(orderedCharacters);
+        console.log(orderedCharacters[character]);
       }
     });
   });
