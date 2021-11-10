@@ -19,7 +19,7 @@ request(filmUrl, function (error, response, body) {
       orderedCharacters[characterName] = character;
 
       if (Object.values(orderedCharacters).length === characters.length) {
-        characters.forEach(function (character) {
+        characters.forEach(character => {
           //console.log(character);
           console.log(orderedCharacters[character]);
         });
