@@ -10,56 +10,74 @@
 
 void heap_sort(int *array, size_t size)
 {
-    int i, temp;
+	if (array == NULL || size < 2)
+		return;
+	helper_heap_sort(array, size, array, size);
+}
 
-    if (array == NULL || size < 2)
-        return;
+/**
+* helper_heap_sort - function that helps & prints
+* @array: integers
+* @size: size of the array
+* @cpyarray: copy of entire array to print
+* @cpysize: copy of size to print
+* Return: void
+*/
 
-    for (i = size / 2 - 1; i >= 0; i--)
-    {
-        sift_down(array, i, size);
-    }
+void helper_heap_sort(int *array, size_t size, int *cpyarray, size_t cpysize)
+{
+	size_t i = 0, temp = 0;
 
-    for (i = size - 1; i > 0; i--)
-    {
-        temp = array[0];
-        array[0] = array[i];
-        array[i] = temp;
-        sift_down(array, 0, i);
-    }
+	for (i = (size - 1) / 2; (int)i >= 0; i--)
+	{
+		sift_down(array, i, size, cpyarray, cpysize);
+	}
+
+	for (i = size - 1; i > 0; i--)
+	{
+		temp = array[i];
+		array[i] = array[0];
+		array[0] = temp;
+		cpyarray[i] = array[i];
+		cpyarray[0] = array[0];
+		print_array(array, size);
+		sift_down(array, 0, i, cpyarray, cpysize);
+	}
 }
 
 /**
 * sift_down - function that sifts down
+* @arr: ints
+* @i: index
+* @size: size of array
+* @cpyarray: copy of entire array to print
+* @cpysize: copy of size of array for printing purposes
 * Return: void
 */
 
-void sift_down(int *array, int index, size_t size)
+void sift_down(int *arr, size_t i, size_t size, int *cpyarray, size_t cpysize)
 {
-    int left, right, largest;
+	size_t left, right, largest;
+	int temp = 0;
 
-    left = 2 * index + 1;
-    right = 2 * index + 2;
-    largest = index;
+	left = 2 * i + 1;
+	right = 2 * i + 2;
+	largest = i;
 
-    if (left < size && array[left] > array[largest])
-        largest = left;
+	if (left < size && arr[left] > arr[largest])
+		largest = left;
 
-    if (right < size && array[right] > array[largest])
-        largest = right;
+	if (right < size && arr[right] > arr[largest])
+		largest = right;
 
-    if (largest != index)
-    {
-        swap(array, largest, index);
-        sift_down(array, largest, size);
-    }
-}
-
-void swap(int *array, int index1, int index2)
-{
-    int temp;
-
-    temp = array[index1];
-    array[index1] = array[index2];
-    array[index2] = temp;
+	if (largest != i)
+	{
+		temp = arr[i];
+		arr[i] = arr[largest];
+		arr[largest] = temp;
+		cpyarray[i] = arr[i];
+		cpyarray[largest] = arr[largest];
+		print_array(arr, size);
+		sift_down(arr, largest, size, cpyarray, cpysize);
+	}
 }
