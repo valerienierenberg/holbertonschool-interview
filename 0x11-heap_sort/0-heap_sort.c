@@ -54,3 +54,12 @@ void sift_down(int *array, int index, size_t size)
         sift_down(array, largest, size);
     }
 }
+
+void swap(int *array, int index1, int index2)
+{
+    int temp;
+
+    temp = array[index1];
+    array[index1] = array[index2];
+    array[index2] = temp;
+}

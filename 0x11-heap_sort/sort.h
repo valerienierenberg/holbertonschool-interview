@@ -8,5 +8,6 @@
 void print_array(const int *array, size_t size);
 void heap_sort(int *array, size_t size);
 void sift_down(int *array, int index, size_t size);
+void swap(int *array, int index1, int index2);
 
 #endif
