@@ -34,4 +34,23 @@ void heap_sort(int *array, size_t size)
 * Return: void
 */
 
-void sift_down()
+void sift_down(int *array, int index, size_t size)
+{
+    int left, right, largest;
+
+    left = 2 * index + 1;
+    right = 2 * index + 2;
+    largest = index;
+
+    if (left < size && array[left] > array[largest])
+        largest = left;
+
+    if (right < size && array[right] > array[largest])
+        largest = right;
+
+    if (largest != index)
+    {
+        swap(array, largest, index);
+        sift_down(array, largest, size);
+    }
+}
