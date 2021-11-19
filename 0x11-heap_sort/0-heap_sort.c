@@ -1,4 +1,4 @@
-#include <sort.h>
+#include "sort.h"
 
 /**
 * heap_sort - function that sorts an array of integers in ascending
@@ -10,7 +10,7 @@
 
 void heap_sort(int *array, size_t size)
 {
-    int i, j, temp;
+    int i, temp;
 
     if (array == NULL || size < 2)
         return;
@@ -28,3 +28,10 @@ void heap_sort(int *array, size_t size)
         sift_down(array, 0, i);
     }
 }
+
+/**
+* sift_down - function that sifts down
+* Return: void
+*/
+
+void sift_down()
