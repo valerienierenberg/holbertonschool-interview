@@ -10,26 +10,35 @@
 
 int advanced_binary(int *array, size_t size, int value)
 {
-	size_t mid = size / 2;
-	int *left;
-	int *right;
-
-	if (array == NULL || size == 0)
+	if (array == NULL || size < 1)
 		return (-1);
-	left = array;
-	right = array + mid;
-	if (size == 1)
-	{
-		if (*left == value)
-			return (0);
-		else
-			return (-1);
-	}
-	if (value == *left)
-		return (0);
-	if (value > *left)
-		return (advanced_binary(right, size - mid, value));
-	if (value < *left)
-		return (advanced_binary(left, mid, value));
+	return (advanced_binary_helper(array, 0, size - 1, value));
+}
+
+/**
+* advanced_binary_helper - recursive helper function
+* @array: array to search
+* @start: start of array
+* @end: end of array
+* @value: value to search for
+* Return: index of value or -1 if not found
+*/
+
+int advanced_binary_helper(int *array, size_t start, size_t end, int value)
+{
+	size_t middle = start + (end - start) / 2;
+
+	if (start > end)
+		return (-1);
+
+	if (array[middle] == value)
+		return (middle);
+
+	if (array[middle] < value)
+		return (advanced_binary_helper(array, middle + 1, end, value));
+
+	if (array[middle] > value)
+		return (advanced_binary_helper(array, start, middle - 1, value));
+
 	return (-1);
 }
