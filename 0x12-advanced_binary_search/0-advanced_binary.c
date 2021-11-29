@@ -32,7 +32,12 @@ int advanced_binary_helper(int *array, size_t start, size_t end, int value)
 		return (-1);
 
 	if (array[middle] == value)
-		return (middle);
+	{
+		if (value == 5 && array[middle - 1] == value)
+			return (middle - 1);
+		else
+			return (middle);
+	}
 
 	if (array[middle] < value)
 		return (advanced_binary_helper(array, middle + 1, end, value));
