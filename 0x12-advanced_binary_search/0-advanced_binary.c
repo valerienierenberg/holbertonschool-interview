@@ -10,33 +10,26 @@
 
 int advanced_binary(int *array, size_t size, int value)
 {
-	if (array == NULL)
+	size_t mid = size / 2;
+	int *left;
+	int *right;
+
+	if (array == NULL || size == 0)
 		return (-1);
-
-	return (advanced_binary_rec(array, 0, size - 1, value));
-}
-
-/**
-* advanced_binary_rec - recursive binary search
-* @array: array to search
-* @start: starting index
-* @end: ending index
-* @value: value to search for
-* Return: index of value or -1 if not found
-*/
-
-int advanced_binary_rec(int *array, size_t start, size_t end, int value)
-{
-	size_t mid;
-
-	if (start > end)
-		return (-1);
-
-	mid = (start + end) / 2;
-	if (array[mid] == value)
-		return (mid);
-	else if (array[mid] < value)
-		return (advanced_binary_rec(array, mid + 1, end, value));
-	else
-		return (advanced_binary_rec(array, start, mid - 1, value));
+	left = array;
+	right = array + mid;
+	if (size == 1)
+	{
+		if (*left == value)
+			return (0);
+		else
+			return (-1);
+	}
+	if (value == *left)
+		return (0);
+	if (value > *left)
+		return (advanced_binary(right, size - mid, value));
+	if (value < *left)
+		return (advanced_binary(left, mid, value));
+	return (-1);
 }
