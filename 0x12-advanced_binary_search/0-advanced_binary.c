@@ -10,18 +10,24 @@
 
 int advanced_binary(int *array, size_t size, int value)
 {
-	size_t middle;
+	size_t mid = 0;
 
-	if (array == NULL || size < 1)
+	if (array == NULL)
 		return (-1);
 
-	middle = size / 2;
+	mid = size / 2;
 
-	if (array[middle] == value)
-		return (middle);
+	if (array[mid] == value)
+		return (mid);
 
-	if (array[middle] < value)
-		return (advanced_binary(array + middle + 1, size - middle - 1, value));
+	if (size == 1)
+		return (-1);
 
-	return (advanced_binary(array, middle, value));
+	if (array[mid] > value)
+		return (advanced_binary(array, mid, value));
+
+	if (array[mid] < value)
+		return (advanced_binary(&array[mid + 1], size - mid - 1, value));
+
+	return (-1);
 }
