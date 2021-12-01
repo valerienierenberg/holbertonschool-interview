@@ -53,7 +53,5 @@ void print_searching_output(int *array, size_t size)
 			printf(", ");
 		else
 			printf("\n");
-		/*if (i == size && array[i] == 51)
-			printf("Searching in array: 51");*/
 	}
 }
