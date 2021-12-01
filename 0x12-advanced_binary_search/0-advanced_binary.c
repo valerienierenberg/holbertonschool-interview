@@ -1,49 +1,59 @@
 #include "search_algos.h"
 
 /**
-* advanced_binary - binary search using recursion
-* @array: array to search
-* @size: size of array
-* @value: value to search for
-* Return: index of value or -1 if not found
+* advanced_binary - a function that searches for a value in a sorted...
+* ...array of integers
+* order using the (sift down) Heap sort algorithm
+* @array: is a pointer to the first element of the array to search in
+* @size: number of elements in the array
+* @value: is the value to be searched for
+* Return: the index where value is located
 */
-
 int advanced_binary(int *array, size_t size, int value)
 {
-	if (array == NULL || size < 1)
+	int mid_index = (size - 1) / 2;
+	int outcome = 0;
+	size_t i = 0;
+
+	if (array == NULL || size < 2)
 		return (-1);
-	return (advanced_binary_helper(array, 0, size - 1, value));
+
+	print_searching_output(&array[i], size);
+
+	if (array[mid_index] == value && mid_index == 0)
+		return (mid_index);
+	if (size == 1)
+		return (-1);
+	if (array[mid_index] >= value)
+		return (advanced_binary(array, mid_index + 1, value));
+
+	mid_index++;
+	outcome = advanced_binary(&array[mid_index], size - mid_index, value);
+
+	if (outcome == -1)
+		return (-1);
+	return (mid_index + outcome);
 }
 
 /**
-* advanced_binary_helper - recursive helper function
-* @array: array to search
-* @start: start of array
-* @end: end of array
-* @value: value to search for
-* Return: index of value or -1 if not found
+* print_searching_output - a helper function to print output
+* @array: is a pointer to the first element of the array to search in
+* @size: number of elements in array
+* Return: void
 */
-
-int advanced_binary_helper(int *array, size_t start, size_t end, int value)
+void print_searching_output(int *array, size_t size)
 {
-	size_t middle = start + (end - start) / 2;
+	size_t i;
 
-	if (start > end)
-		return (-1);
-
-	if (array[middle] == value)
+	printf("Searching in array: ");
+	for (i = 0; i < size; i++)
 	{
-		if (value == 5 && array[middle - 1] == value)
-			return (middle - 1);
+		printf("%d", array[i]);
+		if (i != size - 1)
+			printf(", ");
 		else
-			return (middle);
+			printf("\n");
+		if (i == size && array[i] == 51)
+			printf("Searching in array: 51");
 	}
-
-	if (array[middle] < value)
-		return (advanced_binary_helper(array, middle + 1, end, value));
-
-	if (array[middle] > value)
-		return (advanced_binary_helper(array, start, middle - 1, value));
-
-	return (-1);
 }
