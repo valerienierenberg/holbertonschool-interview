@@ -9,19 +9,22 @@ from sys import argv
 
 
 def count_words(subreddit, word_list):
-    """recursive function that queries the Reddit API and returns
-    a list containing the titles of all hot articles for a given
-    subreddit. If no results are found for the given subreddit, the
-    function should return None."""
-    url = 'https://www.reddit.com/r/{}/hot.json?limit=100'.format(subreddit)
+    """returns the number of times a word is used in a subreddit"""
+    url = 'https://www.reddit.com/r/{}/hot.json'.format(subreddit)
     headers = {'User-Agent': 'My User Agent 1.0'}
-    response = requests.get(url, headers=headers)
+    params = {'limit': 100}
+    response = requests.get(url, headers=headers, params=params)
     if response.status_code != 200:
         return None
     data = response.json()
-    for post in data['data']['children']:
-        for word in word_list:
-            if word in post['data']['title']:
-                print(post['data']['title'])
-    if data['data']['after'] is not None:
+    children = data.get('data').get('children')
+    for child in children:
+        title = child.get('data').get('title')
+        words = title.split()
+        for word in words:
+            if word.lower() in word_list:
+                word_list[word.lower()] += 1
+    after = data.get('data').get('after')
+    if after is not None:
+        params['after'] = after
         count_words(subreddit, word_list)
