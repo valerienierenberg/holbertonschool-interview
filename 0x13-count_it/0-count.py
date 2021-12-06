@@ -4,23 +4,20 @@ a count of all hot articles for a given subreddit"""
 import requests
 
 
-def count_words(subreddit, word_list, word_dict={}):
-    """count_words"""
-    url = 'https://www.reddit.com/r/{}/hot.json'.format(subreddit)
-    header = {'User-Agent': 'My User Agent 1.0'}
-    response = requests.get(url, headers=header)
-    if response.status_code != 200:
+def count_words(subreddit, word_list, after=''):
+    """recursive function that queries the Reddit API and returns
+    a count of all hot articles for a given subreddit"""
+    url = 'https://www.reddit.com/r/{}/hot.json?after={}'.format(subreddit,
+                                                                after)
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:68.0) Gecko/20100101 Firefox/68.0'}
+    response = requests.get(url, headers=headers, allow_redirects=False)
+    if response.status_code == 404:
         return 0
-    data = response.json()
-    for post in data.get('data').get('children'):
-        title = post.get('data').get('title')
-        for word in word_list:
-            if word in title:
-                if word in word_dict:
-                    word_dict[word] += 1
-                else:
-                    word_dict[word] = 1
-    after = data.get('data').get('after')
-    if after is None:
-        return word_dict
-    return count_words(subreddit, word_list, word_dict)
+    if response.status_code == 200:
+        data = response.json()
+        for post in data['data']['children']:
+            for word in word_list:
+                if word in post['data']['title'].lower():
+                    return 1 + count_words(subreddit, word_list,
+                                           post['data']['after'])
+    return 0
