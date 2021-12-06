@@ -4,7 +4,7 @@ a count of all hot articles for a given subreddit"""
 import requests
 
 
-def count_words(subreddit, word_list, after=''):
+def count_words(subreddit, word_list after=None):
     """recursive function that queries the Reddit API and returns
     a count of all hot articles for a given subreddit"""
     url = 'https://www.reddit.com/r/{}/hot.json?after={}'.format(subreddit,
