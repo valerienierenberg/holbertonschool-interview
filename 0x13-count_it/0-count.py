@@ -9,15 +9,15 @@ def count_words(subreddit, word_list, after=''):
     a count of all hot articles for a given subreddit"""
     url = 'https://www.reddit.com/r/{}/hot.json?after={}'.format(subreddit,
                                                                 after)
-    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:68.0) Gecko/20100101 Firefox/68.0'}
-    response = requests.get(url, headers=headers, allow_redirects=False)
-    if response.status_code == 404:
+    headers = {'User-Agent': 'Mozilla/5.0'}
+    req = requests.get(url, headers=headers, allow_redirects=False)
+    if req.status_code != 200:
         return 0
-    if response.status_code == 200:
-        data = response.json()
-        for post in data['data']['children']:
-            for word in word_list:
-                if word in post['data']['title'].lower():
-                    return 1 + count_words(subreddit, word_list,
-                                           post['data']['after'])
+    data = req.json()
+    children = data.get('data').get('children')
+    for child in children:
+        for word in word_list:
+            if child.get('data').get('title').lower().find(word) != -1:
+                return 1 + count_words(subreddit, word_list,
+                                       child.get('data').get('after'))
     return 0
