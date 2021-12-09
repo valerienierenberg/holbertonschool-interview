@@ -1,24 +1,39 @@
 #!/usr/bin/python3
-"""recursive function that queries the Reddit API and returns
-a count of all hot articles for a given subreddit"""
+""" recursive function that queries the Reddit API, parses the title of all
+    hot articles, and prints a sorted count of given keywords (case-insensitive) """
+from collections import OrderedDict
+import json
 import requests
 
 
-def count_words(subreddit, word_list):
-    """recursive function that queries the Reddit API and returns
-    a count of all hot articles for a given subreddit"""
-    url = 'https://www.reddit.com/r/{}/hot.json?limit=100'.format(subreddit)
-    headers = {'User-Agent': 'My User Agent 1.0'}
-    response = requests.get(url, headers=headers, allow_redirects=False)
+def count_words(subreddit, word_list, word_dict={}, count=0, after=None):
+    word_dict = OrderedDict(word_dict)
+    headers = {'User-agent': 'pytho'}
+    parameter = {'limit': 100, 'after': after}
+    url = 'https://www.reddit.com/r/{}/hot.json'.format(subreddit)
+    response = requests.get(url, headers=headers, params=parameter,
+                            allow_redirects=False)
+
     if response.status_code != 200:
-        return 0
+        return None
+
     data = response.json()
-    count = 0
-    for post in data.get('data').get('children'):
-        title = post.get('data').get('title')
-        for word in word_list:
-            if word in title:
-                count += 1
-    if data.get('data').get('after') is not None:
-        return count + count_words(subreddit, word_list)
-    return count
+    rspn = data.get('data')
+    child = rspn.get('children')
+    after = rspn.get('after')
+
+    for titles in child:
+        postTitle = (titles.get('data')['title']).lower()
+        for post in postTitle.split():
+            for word in word_list:
+                word = word.lower()
+                if post == word:
+                    if word in word_dict.keys():
+                        word_dict[word] += 1
+                    else:
+                        word_dict[word] = 1
+    if after is not None:
+        return count_words(subreddit, word_list, word_dict, count, after)
+    else:
+        for i in sorted(word_dict, key=word_dict.get, reverse=True):
+            print('{}: {}'.format(i, word_dict[i]))
