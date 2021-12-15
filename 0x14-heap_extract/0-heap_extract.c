@@ -15,48 +15,37 @@ int heap_extract(heap_t **root)
 
     if (!root || !*root)
         return (0);
-
     temp = *root;
     value = temp->n;
     *root = temp->left;
+    if (*root)
+        (*root)->parent = NULL;
     free(temp);
     if (*root)
-        heapify(root);
+        heap_sift_down(*root);
     return (value);
 }
 
-void heapify(heap_t **root)
+void heap_sift_down(heap_t *root)
 {
     heap_t *temp;
-    heap_t *parent;
-    heap_t *child;
 
-    temp = *root;
-    parent = temp->parent;
-    child = temp->left;
-    while (child)
+    if (!root)
+        return;
+    while (root->left)
     {
-        if (child->n > temp->n)
+        if (root->n > root->left->n)
         {
-            swap_nodes(&temp, &child);
-            temp = child;
-            child = temp->left;
+            if (root->n > root->right->n)
+            {
+                temp = root->left;
+                root->left = root->right;
+                root->right = temp;
+            }
+            temp = root->left;
+            root->left = root->right;
+            root->right = temp;
         }
-        else
-            break;
+        root = root->left;
     }
-    if (parent && temp->n > parent->n)
-    {
-        swap_nodes(&temp, &parent);
-        heapify(&parent);
-    }
-}
-
-void swap_nodes(heap_t **a, heap_t **b)
-{
-    heap_t *temp;
-
-    temp = *a;
-    *a = *b;
-    *b = temp;
 }
