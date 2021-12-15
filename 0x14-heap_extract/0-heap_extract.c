@@ -10,42 +10,48 @@
 */
 int heap_extract(heap_t **root)
 {
-    heap_t *temp;
-    int value;
+	heap_t *temp;
+	int value;
 
-    if (!root || !*root)
-        return (0);
-    temp = *root;
-    value = temp->n;
-    *root = temp->left;
-    if (*root)
-        (*root)->parent = NULL;
-    free(temp);
-    if (*root)
-        heap_sift_down(*root);
-    return (value);
+	if (!root || !*root)
+		return (0);
+	temp = *root;
+	value = temp->n;
+	*root = temp->left;
+	if (*root)
+		(*root)->parent = NULL;
+	free(temp);
+	if (*root)
+		heap_sift_down(*root);
+	return (value);
 }
+
+/**
+* heap_sift_down - helper
+* @root: root of the heap
+* Return: void
+*/
 
 void heap_sift_down(heap_t *root)
 {
-    heap_t *temp;
+	heap_t *temp;
 
-    if (!root)
-        return;
-    while (root->left)
-    {
-        if (root->n > root->left->n)
-        {
-            if (root->n > root->right->n)
-            {
-                temp = root->left;
-                root->left = root->right;
-                root->right = temp;
-            }
-            temp = root->left;
-            root->left = root->right;
-            root->right = temp;
-        }
-        root = root->left;
-    }
+	if (!root)
+		return;
+	while (root->left)
+	{
+		if (root->n > root->left->n)
+		{
+			if (root->n > root->right->n)
+			{
+				temp = root->left;
+				root->left = root->right;
+				root->right = temp;
+			}
+			temp = root->left;
+			root->left = root->right;
+			root->right = temp;
+		}
+		root = root->left;
+	}
 }
