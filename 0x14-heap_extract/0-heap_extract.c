@@ -4,18 +4,25 @@
 * heap_extract - extract the root of a heap
 * @root: root of the heap
 */
-
 int heap_extract(heap_t **root)
 {
-    heap_t *temp;
-    int value;
+	heap_t *tmp;
+	int ret;
 
-    if (!root || !*root)
-        return (0);
+	if (!root || !*root)
+		return (0);
 
-    temp = *root;
-    value = temp->n;
-    *root = temp->left;
-    free(temp);
-    return (value);
+	tmp = *root;
+
+	if ((*root)->left)
+		*root = (*root)->left;
+	else if ((*root)->right)
+		*root = (*root)->right;
+	else
+		*root = NULL;
+
+	ret = tmp->n;
+
+	free(tmp);
+	return (ret);
 }
