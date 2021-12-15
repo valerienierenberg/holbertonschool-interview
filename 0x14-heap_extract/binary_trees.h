@@ -23,5 +23,4 @@ typedef struct binary_tree_s binary_tree_t;
 typedef struct binary_tree_s heap_t;
 
 int heap_extract(heap_t **root);
-void swap_nodes(heap_t **a, heap_t **b);
-void heapify(heap_t **root);
+void heap_sift_down(heap_t *root);
