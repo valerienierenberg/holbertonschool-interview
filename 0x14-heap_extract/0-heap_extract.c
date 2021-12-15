@@ -6,23 +6,47 @@
 */
 int heap_extract(heap_t **root)
 {
-	heap_t *tmp;
-	int ret;
+	int data;
+	heap_t *temp;
 
-	if (!root || !*root)
+	if (!root || !(*root))
 		return (0);
+	temp = *root;
+	data = temp->n;
+	if (temp->left)
+		heap_insert(&temp->left, temp->left);
+	if (temp->right)
+		heap_insert(&temp->right, temp->right);
+	*root = temp->left;
+	free(temp);
+	return (data);
+}
 
-	tmp = *root;
+int heap_insert(heap_t **root, heap_t *node)
+{
+    heap_t *temp;
 
-	if ((*root)->left)
-		*root = (*root)->left;
-	else if ((*root)->right)
-		*root = (*root)->right;
-	else
-		*root = NULL;
-
-	ret = tmp->n;
-
-	free(tmp);
-	return (ret);
+    if (!root || !node)
+        return (-1);
+    if (!(*root))
+    {
+        *root = node;
+        return (1);
+    }
+    temp = *root;
+    if (node->n > temp->n)
+    {
+        node->right = temp;
+        *root = node;
+    }
+    else
+    {
+        while (temp->right && temp->right->n < node->n)
+            temp = temp->right;
+        if (temp->right)
+            temp->right->left = node;
+        node->right = temp->right;
+        temp->right = node;
+    }
+    return (1);
 }
