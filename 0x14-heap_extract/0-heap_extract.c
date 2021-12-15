@@ -4,7 +4,8 @@
 * heap_extract - extract the root of a heap
 * @root: root of the heap
 * Your function must return the value stored in the root node
-* The root node must be freed and replace with the last level-order node of the heap
+* The root node must be freed and replace with the last
+* level-order node of the heap
 * Once replaced, the heap must be rebuilt if necessary
 * Return: the value of the root node
 */
