@@ -1,58 +1,121 @@
 #include "binary_trees.h"
 
 /**
-* heap_extract - extract the root of a heap
-* @root: root of the heap
-* Your function must return the value stored in the root node
-* The root node must be freed and replace with the last
-* level-order node of the heap
-* Once replaced, the heap must be rebuilt if necessary
-* Return: the value of the root node
-*/
-int heap_extract(heap_t **root)
-{
-	heap_t *temp;
-	int value;
+ * find_h - find height of tree
+ * @tree: pointer to root of tree
+ * Return: if NULL return 0
+ */
 
-	if (!root || !*root)
+size_t find_h(const binary_tree_t *tree)
+{
+	size_t left, right;
+
+	if (tree == NULL)
 		return (0);
-	temp = *root;
-	value = temp->n;
-	*root = temp->left;
-	if (*root)
-		(*root)->parent = NULL;
-	free(temp);
-	if (*root)
-		heap_sift_down(*root);
-	return (value);
+	left = find_h(tree->left);
+	right = find_h(tree->right);
+	if (left > right)
+	return (left + 1);
+	else
+	return (right + 1);
 }
 
 /**
-* heap_sift_down - helper
-* @root: root of the heap
-* Return: void
-*/
+ * balance - returns balance factor
+ * @tree: root of tree
+ * Return: balance factor
+ */
 
-void heap_sift_down(heap_t *root)
+int balance(const binary_tree_t *tree)
 {
-	heap_t *temp;
+	int left, right, bal;
 
-	if (!root)
-		return;
-	while (root->left)
+	if (tree == NULL)
 	{
-		if (root->n > root->left->n)
-		{
-			if (root->n > root->right->n)
-			{
-				temp = root->left;
-				root->left = root->right;
-				root->right = temp;
-			}
-			temp = root->left;
-			root->left = root->right;
-			root->right = temp;
-		}
-		root = root->left;
+		return (0);
 	}
+	left = find_h(tree->left);
+	right = find_h(tree->right);
+	bal = left - right;
+
+	return (bal);
+}
+
+/**
+ * tree_sort - sorts new tree
+ * @root: root of tree
+ * Return: tree
+ */
+
+void tree_sort(binary_tree_t *root)
+{
+	int place_holder;
+	heap_t *tmp;
+
+	if (!root->left && !root->right)
+		return;
+
+	if (root->right && root->right->n > root->left->n)
+		tmp = root->right;
+	else
+		tmp = root->left;
+
+	if (root->n < tmp->n)
+	{
+		place_holder = root->n;
+		root->n = tmp->n;
+		tmp->n = place_holder;
+		tree_sort(tmp);
+	}
+}
+
+
+/**
+ * heap_extract - extracts root of max heap
+ * @root: root node of binary search tree
+ *
+ * Return: value of node deleted
+ */
+
+int heap_extract(heap_t **root)
+{
+	heap_t *min = *root, *tmp = NULL;
+	int res;
+
+	if (!root || !(*root))
+		return (0);
+	res = (*root)->n;
+
+	if (!(*root)->left && !(*root)->right)
+	{
+		free(*root);
+		*root = NULL;
+		return (res);
+	}
+	while (min != NULL)
+	{
+		if (!min->left && !min->right)
+			break;
+		if (balance(min) <= 0)
+			min = min->right;
+		else
+			min = min->left;
+	}
+	if (!min->parent)
+	{
+		res = min->n;
+		free(min);
+		return (res);
+	}
+	tmp = min->parent;
+	(*root)->n = min->n;
+	if (tmp->left == min)
+		tmp->left = NULL;
+	else
+		tmp->right = NULL;
+	free(min);
+
+	tree_sort(*root);
+
+	return (res);
 }

@@ -23,4 +23,6 @@ typedef struct binary_tree_s binary_tree_t;
 typedef struct binary_tree_s heap_t;
 
 int heap_extract(heap_t **root);
-void heap_sift_down(heap_t *root);
+void tree_sort(binary_tree_t *root);
+int balance(const binary_tree_t *tree);
+size_t find_h(const binary_tree_t *tree);
