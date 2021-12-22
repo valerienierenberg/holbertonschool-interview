@@ -1,51 +1,73 @@
 #include "holberton.h"
 
 /**
-* main - program that multiplies two positive numbers
-* @argc: number of arguments
-* @argv: array of arguments
+* error_printing - error handling
+* @void: void
 * Return: 0
 */
-int main(int argc, char *argv[])
+
+void error_printing(void)
 {
-	if (argc != 3)
-	{
-		printf("Error\n");
-		exit(98);
-	}
-    if (_atoi(argv[1]) == 0 || _atoi(argv[2]) == 0)
-    {
-        printf("Error\n");
-        exit(98);
-    }
-	printf("%d\n", _atoi(argv[1]) * _atoi(argv[2]));
-	return (0);
+	char *e = "Error\n";
+	int i;
+
+	for (i = 0; i < 6; i++)
+		_putchar(e[i]);
 }
 
 /**
-* _atoi - converts a string to an integer
-* @s: string to be converted
-* Return: integer
+* check_string - checks if string is int and if so, is it 0
+* @argv: input string
+* Return: -1 1 or 0
 */
-
-int _atoi(char *s)
+int check_string(char *argv[])
 {
-    int i, sign, num;
+	int i, j, z_check = 0;
 
-    i = 0;
-    sign = 1;
-    num = 0;
-    while (s[i] == ' ' || s[i] == '\t' || s[i] == '\n' || s[i] == '\v' ||
-        s[i] == '\f' || s[i] == '\r')
-        i++;
-    if (s[i] == '-')
-        sign = -1;
-    if (s[i] == '-' || s[i] == '+')
-        i++;
-    while (s[i] >= '0' && s[i] <= '9')
-    {
-        num = num * 10 + (s[i] - '0');
-        i++;
-    }
-    return (num * sign);
+	for (i = 1; i < 3; i++)
+	{
+		for (j = 0; argv[i][j] != '\0'; j++)
+		{
+			if (argv[i][j] < 48 || argv[i][j] > 57)
+			{
+				print_error();
+				return (-1);
+			}
+			if (argv[i][j] != '0')
+				z_check++;
+		}
+		if (z_check == 0)
+			return (0);
+		z_check = 0;
+	}
+	return (1);
+}
+
+/**
+* main - program that multiplies two positive numbers
+* @argc: number of arguments
+* @argv: array of arguments
+* Return: 98 if error, 0 if success
+*/
+int main(int argc, char *argv[])
+{
+	int str_check, ans = 0;
+	/*int a[100], b[100];*/
+
+	if (argc != 3)
+	{
+		print_error();
+		return (98);
+	}
+
+	str_check = check_string(argv);
+	if (str_check < 0)
+		return (98);
+	if (str_check == 0)
+	{
+		_putchar('0');
+		_putchar('\n');
+	}
+
+	return (ans);
 }
