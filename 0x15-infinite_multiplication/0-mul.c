@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
 
 	if (argc != 3)
 	{
-		print_error();
+		error_printing();
 		return (98);
 	}
 
