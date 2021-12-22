@@ -30,7 +30,7 @@ int check_string(char *argv[])
 		{
 			if (argv[i][j] < 48 || argv[i][j] > 57)
 			{
-				print_error();
+				error_printing();
 				return (-1);
 			}
 			if (argv[i][j] != '0')
