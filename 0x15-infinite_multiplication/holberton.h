@@ -6,3 +6,4 @@
 int _atoi(char *s);
 void error_printing(void);
 int check_string(char *argv[]);
+int _putchar(char c);
