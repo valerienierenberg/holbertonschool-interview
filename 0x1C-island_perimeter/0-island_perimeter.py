@@ -2,6 +2,7 @@
 
 """ island_perimeter.py: Island perimeter """
 
+
 def island_perimeter(grid):
     """
     grid: list of lists of integers
