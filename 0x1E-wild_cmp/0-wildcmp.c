@@ -1,7 +1,8 @@
 #include "holberton.h"
 
 /**
-* wildcmp - compares two strings. s2 can contain the special character '*' which can replace any string (including empty string)
+* wildcmp - compares two strings. s2 can contain the special character '*'
+* which can replace any string (including empty string)
 * @s1: string 1
 * @s2: string 2
 * Return: 1 if the strings can be considered identical, 0 otherwise
